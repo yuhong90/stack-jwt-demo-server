@@ -13,8 +13,7 @@ authMiddlewareRouter.use((req, res, next) => {
 });
 
 const checkTokenValidity = (req, res, next) => {
-    let accessToken = req.cookies.jwt;
-    console.log('token', accessToken);
+    let accessToken = req.headers.authorization ? req.headers.authorization.split(' ')[1] : '';
 
     jwt.verify(accessToken, secrets.jwtSecret, function (err, decoded) {
         if (err) {

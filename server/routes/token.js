@@ -37,7 +37,7 @@ tokenRouter.get('/token', function (req, res) {
 
     generateAccessToken(sub, ans)
         .then(({ encodedToken, payload }) => {
-            console.log('encodedToken: ', encodedToken);
+            console.log('generate encodedToken: ', encodedToken);
             res.cookie('jwt', encodedToken, { domain: 'localhost' });
             res.status(200);
             res.json({ encodedToken, payload });
