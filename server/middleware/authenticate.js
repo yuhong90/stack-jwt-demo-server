@@ -4,8 +4,8 @@ const cookieParser = require('cookie-parser');
 const { secrets } = require('../config');
 
 const authMiddlewareRouter = express.Router();
-const TOKEN_ISSUER = 'stackconf-auth-service';
-const TOKEN_AUDIENCE = 'stackconf-api-service';
+const TOKEN_ISSUER = secrets.tokenIssuer;
+const TOKEN_AUDIENCE = secrets.tokenAudience;
 
 authMiddlewareRouter.use(cookieParser());
 authMiddlewareRouter.use((req, res, next) => {

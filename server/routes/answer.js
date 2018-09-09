@@ -11,6 +11,16 @@ answerRouter.get('/answers', function (req, res) {
 });
 
 answerRouter.use(authMiddlewareRouter);
+// Allow cors
+answerRouter.use(function (req, res, next) {
+    console.log('in here');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader("Access-Control-Max-Age", "3600");
+    next();
+});
+
 
 answerRouter.post('/answers', function (req, res) {
     if (!req.session.sub || !req.session.ans || !req.session.jti) {

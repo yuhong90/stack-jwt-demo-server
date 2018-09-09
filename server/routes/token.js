@@ -8,8 +8,8 @@ const tokenRouter = express.Router();
 const generateAccessToken = (sub, ans) => {
     const accessToken = {
         payload: {
-            iss: 'stackconf-auth-service',
-            aud: 'stackconf-api-service',
+            iss: secrets.tokenIssuer,
+            aud: secrets.tokenAudience,
             sub: sub,
             ans: ans
         },

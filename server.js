@@ -24,4 +24,4 @@ app.use('/api', adminRouter);
 app.use('/api', tokenRouter);
 app.use('/api', answerRouter);
 
-app.listen(app.listen(serverConfig.port, () => console.log('App listening on port 3000!')));
+app.listen(app.listen(serverConfig.port, () => console.log(`App listening on port ${serverConfig.port}!`)));

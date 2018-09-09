@@ -5,7 +5,7 @@ This repo contains a demo api server using JWT auth for its protected apis, impl
 ## Setup
 - Restore depedencies with `npm install`
 - Start running server with `npm start`
-- Test the application quiz UI with `http://localhost:3000`. The app will poll `/api/answer` api for updates to guess attempts.
+- Test the application quiz UI with `http://localhost:3001`. The app will poll `/api/answer` api for updates to guess attempts.
 
 ## Structure
 - `~/app` contains the React app and frontend assets
