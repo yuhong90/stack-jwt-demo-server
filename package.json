@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && npx node server.js",
+    "start": "npx node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "postinstall": "npm run build"
   },
   "author": "Shek Yu Hong",
   "license": "ISC",
@@ -21,11 +22,11 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "request": "^2.88.0",
-    "uuidv1": "^1.6.14",
-    "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0"
+    "uuidv1": "^1.6.14"
   },
   "devDependencies": {
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
