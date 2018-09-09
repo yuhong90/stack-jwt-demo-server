@@ -1,5 +1,5 @@
 const serverConfig = {
-    port: 3001,
+    port: process.env.PORT || 3001,
     serverStartTime: new Date().toLocaleString("en-GB", { timeZone: "Asia/Singapore" })
 };
 
