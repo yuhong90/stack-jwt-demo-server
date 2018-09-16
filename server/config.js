@@ -7,7 +7,8 @@ const secrets = {
     jwtSecret: 'stackconf2018',
     adminPwd: 'stackconfadmin',
     tokenIssuer: 'stackconf-auth-service',
-    tokenAudience: 'stackconf-api-service'
+    tokenAudience: 'stackconf-api-service',
+    riddleAnswer: 'inheritance'
 }
 
 module.exports.serverConfig = serverConfig;

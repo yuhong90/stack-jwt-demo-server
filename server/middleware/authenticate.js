@@ -15,6 +15,12 @@ authMiddlewareRouter.use((req, res, next) => {
 const checkTokenValidity = (req, res, next) => {
     let accessToken = req.headers.authorization ? req.headers.authorization.split(' ')[1] : '';
 
+    if (accessToken === '') {
+        res.status(401);
+        res.json({ error: 'Missing token' });
+        return;
+    }
+
     jwt.verify(accessToken, secrets.jwtSecret, function (err, decoded) {
         if (err) {
             console.log('Invalid token', err);
