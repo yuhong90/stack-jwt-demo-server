@@ -1,13 +1,11 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
 const { secrets } = require('../config');
 
 const authMiddlewareRouter = express.Router();
 const TOKEN_ISSUER = secrets.tokenIssuer;
 const TOKEN_AUDIENCE = secrets.tokenAudience;
 
-authMiddlewareRouter.use(cookieParser());
 authMiddlewareRouter.use((req, res, next) => {
     checkTokenValidity(req, res, next);
 });
