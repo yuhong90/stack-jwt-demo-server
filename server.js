@@ -14,9 +14,19 @@ router.get('/', function (req, res) {
     res.sendFile('app/public/quiz.html', { root: __dirname });
 });
 
+
 router.get('/health', function (req, res) {
     var data = { config: serverConfig, answersSubmitted: answerList.length };
     res.send(data);
+});
+
+// Allow cors
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+    res.setHeader("Access-Control-Expose-Headers", "content-type, authorization, if-none-match");
+    res.setHeader("Access-Control-Allow-Headers", "content-type, authorization, if-none-match");
+    next();
 });
 
 app.use('/', router);
