@@ -11,8 +11,12 @@ authMiddlewareRouter.use((req, res, next) => {
 });
 
 const checkTokenValidity = (req, res, next) => {
-    let accessToken = req.headers.authorization ? req.headers.authorization.split(' ')[1] : '';
+    console.log('req.method', req.method);
+    if (req.method === 'OPTIONS') {
+        next();
+    }
 
+    let accessToken = req.headers.authorization ? req.headers.authorization.split(' ')[1] : '';
     if (accessToken === '') {
         res.status(401);
         res.json({ error: 'Missing token' });
