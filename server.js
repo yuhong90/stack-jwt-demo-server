@@ -2,21 +2,21 @@ const express = require('express');
 const { serverConfig } = require('./server/config');
 
 const adminRouter = require('./server/routes/admin');
-const answerRouter = require('./server/routes/answer');
+const parkRouter = require('./server/routes/park');
 const tokenRouter = require('./server/routes/token');
-const answerList = require('./server/data/answers');
+const entriesList = require('./server/data/entries');
 
 const app = express();
 const router = express.Router();
 
 router.use('/', express.static('app/public'));
 router.get('/', function (req, res) {
-    res.sendFile('app/public/quiz.html', { root: __dirname });
+    res.sendFile('app/public/park.html', { root: __dirname });
 });
 
 
 router.get('/health', function (req, res) {
-    var data = { config: serverConfig, answersSubmitted: answerList.length };
+    var data = { config: serverConfig, answersSubmitted: entriesList.length };
     res.send(data);
 });
 
@@ -32,6 +32,6 @@ app.use(function (req, res, next) {
 app.use('/', router);
 app.use('/api', adminRouter);
 app.use('/api', tokenRouter);
-app.use('/api', answerRouter);
+app.use('/api/park', parkRouter);
 
 app.listen(app.listen(serverConfig.port, () => console.log(`App listening on port ${serverConfig.port}!`)));

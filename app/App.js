@@ -10,7 +10,7 @@ const headerStyle = {
     textAlign: 'center',
     margin: 100
 };
-const answerListStyle = {
+const entryListStyle = {
     width: '96%',
     margin: 10,
     display: 'flex',
@@ -18,7 +18,7 @@ const answerListStyle = {
     justifyContent: 'space-around',
     alignItems: 'center'
 };
-const answerBoxStyle = {
+const entryBoxStyle = {
     minHeight: '120px',
     minWidth: '30%',
     margin: 20,
@@ -31,18 +31,7 @@ const answerBoxStyle = {
     justifyContent: 'center',
     alignItems: 'center'
 };
-const correctAnswerStyle = {
-    background: '#F7D2C8'
-};
-const wrongAnswerStyle = {
-    background: '#EE1C2F'
-};
-const answerStyle = {
-    fontFamily: 'Open Sans',
-    fontSize: 32,
-    margin: 5
-};
-const answerNameStyle = {
+const entryNameStyle = {
     fontFamily: 'Open Sans',
     fontWeight: 'bold',
     fontSize: 22,
@@ -53,22 +42,22 @@ export default class App extends Component {
 
     constructor() {
         super();
-        this.state = { answers: {} };
+        this.state = { entries: {} };
     }
 
     fetchUpdates() {
-        fetch(`/api/answers`)
+        fetch(`/api/park/entries`)
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log('fetched answers', result);
-                    this.setState({ answers: result.answers });
+                    console.log('fetched entries', result);
+                    this.setState({ entries: result.entries });
                 },
                 (error) => {
                     this.setState({ error });
                 }).catch(err => {
                     console.log('err', err);
-                })
+                });
     }
 
     componentDidMount() {
@@ -84,15 +73,14 @@ export default class App extends Component {
         return (
             <div style={containerStyle}>
                 <div id="header" style={headerStyle}>
-                    <span>What's the object-oriented way to become wealthy?</span>
+                    <span>Entries into the amusement park today</span>
                 </div>
-                <div id="result" style={answerListStyle}>
+                <div id="result" style={entryListStyle}>
                     {
-                        Object.values(this.state.answers).map((attempt) => {
+                        Object.values(this.state.entries).map((person) => {
                             return (
-                                <div style={Object.assign(answerBoxStyle, attempt.status === 'correct' ? correctAnswerStyle : wrongAnswerStyle)}>
-                                    <span style={answerStyle}>{attempt.answer ? attempt.answer : ''}</span>
-                                    <span style={answerNameStyle}>{attempt.name}</span>
+                                <div style={entryBoxStyle}>
+                                    <span style={entryNameStyle}>{person.name}</span>
                                 </div>
                             );
                         })

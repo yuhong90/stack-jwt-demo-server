@@ -35,7 +35,7 @@ const checkTokenValidity = (req, res, next) => {
             console.log('Decoded', decoded);
             if (decoded.iss !== TOKEN_ISSUER || decoded.aud !== TOKEN_AUDIENCE) {
                 res.status(401);
-                res.json({ error: 'Invalid token issuer/audience' });
+                res.json({ error: 'Invalid jwt token issuer/audience' });
             }
             req.session = decoded;
             next();
