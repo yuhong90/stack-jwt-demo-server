@@ -16,7 +16,7 @@ const generateAccessToken = (sub, ans) => {
         digitalSigningSecret: secrets.jwtSecret,
         options: {
             jwtid: uuidv1(),
-            algorithm: 'HS256',
+            algorithm: 'HS384',
             expiresIn: 60 * 3
         }
     };
