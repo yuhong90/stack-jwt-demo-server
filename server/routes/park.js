@@ -19,7 +19,7 @@ parkRouter.post('/entries', function (req, res) {
         return;
     }
 
-    let entry = { name: req.session.sub };
+    let entry = { name: req.session.sub, type: req.session.type };
     entriesList[req.session.jti] = entry;
     res.status(200);
     res.send({ message: 'Welcome to STACK Amusement Park!' });

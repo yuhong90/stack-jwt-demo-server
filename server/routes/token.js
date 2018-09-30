@@ -5,13 +5,13 @@ const uuidv1 = require('uuidv1');
 const { secrets } = require('../config');
 const tokenRouter = express.Router();
 
-const generateAccessToken = (sub, ans) => {
+const generateAccessToken = (sub, type) => {
     const accessToken = {
         payload: {
             iss: secrets.tokenIssuer,
             aud: secrets.tokenAudience,
             sub: sub,
-            ans: ans
+            type: type
         },
         digitalSigningSecret: secrets.jwtSecret,
         options: {
@@ -33,9 +33,9 @@ const generateAccessToken = (sub, ans) => {
 
 tokenRouter.get('/token', function (req, res) {
     let sub = req.query.sub;
-    let ans = req.query.ans;
+    let type = req.query.type;
 
-    generateAccessToken(sub, ans)
+    generateAccessToken(sub, type)
         .then(({ encodedToken, payload }) => {
             console.log('generate encodedToken: ', encodedToken);
             res.cookie('jwt', encodedToken, { domain: 'localhost' });

@@ -37,6 +37,11 @@ const entryNameStyle = {
     fontSize: 22,
     margin: 5
 };
+const entryTypeStyle = {
+    fontFamily: 'Open Sans',
+    fontSize: 16,
+    margin: 5
+};
 
 export default class App extends Component {
 
@@ -77,10 +82,11 @@ export default class App extends Component {
                 </div>
                 <div id="result" style={entryListStyle}>
                     {
-                        Object.values(this.state.entries).map((person) => {
+                        Object.values(this.state.entries).map((ticket) => {
                             return (
                                 <div style={entryBoxStyle}>
-                                    <span style={entryNameStyle}>{person.name}</span>
+                                    <span style={entryNameStyle}>{ticket.name}</span>
+                                    <span style={entryTypeStyle}>{ticket.type}</span>
                                 </div>
                             );
                         })
